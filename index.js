@@ -17,6 +17,13 @@ const run = async () => {
     const db = client.db("moonTech");
     const productCollection = db.collection("product");
 
+    app.get("/products", async (req, res) => {
+      const query = {};
+      const cursor = productCollection.find(query);
+      const product = await cursor.toArray();
+      res.send({ status: true, data: product });
+    })
+
   }
 
   finally {
